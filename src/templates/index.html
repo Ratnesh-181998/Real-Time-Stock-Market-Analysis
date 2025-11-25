@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Stock Market Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-icon">📈</div>
+                <div class="header-text">
+                    <h1>Real-Time Stock Market Analysis</h1>
+                    <p class="subtitle">Powered by Apache Kafka & Machine Learning</p>
+                </div>
+            </div>
+            <div class="status-indicator">
+                <span class="status-dot connected" id="statusDot"></span>
+                <span id="statusText">Connected</span>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Live Stock Feed -->
+            <div class="card live-feed">
+                <div class="card-header">
+                    <h2>🔴 Live Stock Feed</h2>
+                </div>
+                <div class="stock-list" id="stockList">
+                    <div class="empty-state">Waiting for data...</div>
+                </div>
+            </div>
+
+            <!-- Price Chart -->
+            <div class="card chart-card">
+                <div class="card-header">
+                    <h2>📊 Price Trends</h2>
+                    <select id="stockSelector" class="stock-selector">
+                        <option value="">AAPL</option>
+                    </select>
+                </div>
+                <canvas id="priceChart"></canvas>
+            </div>
+
+            <!-- ML Predictions -->
+            <div class="card predictions">
+                <div class="card-header">
+                    <h2>🤖 ML Predictions</h2>
+                    <span class="badge">LSTM Model</span>
+                </div>
+                <div class="prediction-list" id="predictionList">
+                    <div class="empty-state">No predictions yet</div>
+                </div>
+            </div>
+
+            <!-- Volume Alerts -->
+            <div class="card alerts">
+                <div class="card-header">
+                    <h2>⚠️ Volume Alerts</h2>
+                    <span class="badge badge-alert" id="alertCount">0</span>
+                </div>
+                <div class="alert-list" id="alertList">
+                    <div class="empty-state">No alerts</div>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="card stats">
+                <div class="card-header">
+                    <h2>📊 Statistics</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">Total Messages</div>
+                        <div class="stat-value" id="totalMessages">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Active Stocks</div>
+                        <div class="stat-value" id="activeStocks">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Avg Volume</div>
+                        <div class="stat-value" id="avgVolume">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">High Volume Events</div>
+                        <div class="stat-value" id="highVolumeEvents">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Architecture -->
+            <div class="card system-info">
+                <div class="card-header">
+                    <h2>⚙️ System Architecture</h2>
+                </div>
+                <div class="architecture">
+                    <div class="arch-item">
+                        <span class="arch-icon">📡</span>
+                        <div class="arch-title">Data Source</div>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-item">
+                        <span class="arch-icon">🔄</span>
+                        <div class="arch-title">Apache Kafka</div>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-item">
+                        <span class="arch-icon">🧠</span>
+                        <div class="arch-title">LSTM Model</div>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-item">
+                        <span class="arch-icon">📊</span>
+                        <div class="arch-title">Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+
+</html>

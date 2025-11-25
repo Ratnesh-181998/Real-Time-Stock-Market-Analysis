@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.venv
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Kafka & Java (Local downloads)
+kafka_local/
+java_local/
+kafka_temp/
+java_temp/
+zookeeper-data/
+kafka-logs/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Logs
+*.log
+logs/
+
+# Data
+data/raw/
+data/processed/
+*.csv
+*.json
+!src/static/*.json
+
+# Models (optional - keep if small, ignore if huge)
+# *.h5
+# *.keras
+# For this project, we might want to keep the trained model if it's small, 
+# but usually models are ignored. I'll keep it commented out to include it by default 
+# as it's likely small for this demo.
+
+# OS
+.DS_Store
+Thumbs.db

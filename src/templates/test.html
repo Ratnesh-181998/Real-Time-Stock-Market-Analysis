@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Connection Test</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+
+<body>
+    <h1 id="status">Testing...</h1>
+    <script>
+        const socket = io();
+        socket.on('connect', () => {
+            document.getElementById('status').textContent = 'CONNECTED!';
+            document.getElementById('status').style.color = 'green';
+        });
+        socket.on('disconnect', () => {
+            document.getElementById('status').textContent = 'DISCONNECTED';
+            document.getElementById('status').style.color = 'red';
+        });
+    </script>
+</body>
+
+</html>
