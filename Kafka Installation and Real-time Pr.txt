@@ -1,0 +1,62 @@
+Kafka Installation and Real-time Processing System Design
+Introduction to Kafka
+Apache Kafka is an open-source stream processing platform. It is primarily used for building real-time data pipelines and streaming applications. Key features of Kafka include its distributed nature, fault tolerance, high throughput, and it being a streaming platform. Kafka is optimized for horizontal scaling and provides persistent storage【7:3†source】.
+
+Key Components of Kafka
+Producers: Producers send data (messages) to Kafka topics. In the context of our case study, a producer sends stock market data to a topic named, for example, "Stock Market"【7:13†source】.
+
+Consumers: Consumers receive data from topics. Kafka maintains the order of messages, ensuring they are received in the order they were written to the topic【7:19†source】.
+
+Topics: Topics are categories to which messages are sent by producers and from which messages are received by consumers. Each topic is split into partitions, which allow Kafka to scale horizontally【7:19†source】.
+
+Brokers: Brokers are servers that store messages in topics. Data is replicated across brokers to ensure fault tolerance【7:19†source】.
+
+Zookeeper: Kafka uses Zookeeper for distributed coordination, managing the state of brokers and partitions【7:5†source】.
+
+Installation and Setup
+Installing Kafka on Amazon EC2
+Launch an EC2 Instance: An instance should be launched using Amazon Linux 2【7:5†source】.
+
+Install Java: Since Kafka runs on Java, the first step is to install Java on the EC2 instance.
+
+sudo yum install java
+Download Kafka: Download Kafka from the Apache site using wget.
+
+wget https://archive.apache.org/dist/kafka/3.3.1/kafka_2.12-3.3.1.tgz
+Extract Kafka:
+
+tar -xzf kafka_2.12-3.3.1.tgz
+cd kafka_2.12-3.3.1/
+Start Zookeeper: Zookeeper acts as a coordinator.
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+Start Kafka Server:
+
+kafka-server-start.sh config/server.properties
+Memory Management
+Increase the memory allocated to Kafka to avoid errors.
+
+export KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"
+This command sets the maximum and minimum heap size for the JVM【7:18†source】.
+
+System Design for Real-Time Stock Market Analysis
+Functional Requirements
+Real-Time Data Ingestion: The system should be capable of ingesting stock prices and volume data in real time【7:9†source】.
+
+Stream Processing: The system must process (clean, aggregate, transform) the data in real-time【7:9†source】.
+
+Batch and Real-Time Storage: Both raw and processed data need to be stored persistently, typically using services like Amazon S3【7:9†source】【7:15†source】.
+
+Real-Time Alerts: Set up alerts for anomalies such as volume spikes or price drops using AWS services like SNS and Lambda【7:9†source】.
+
+Batch Analytics: Execute SQL queries on historical data stored in S3 using AWS Athena【7:6†source】【7:9†source】.
+
+Machine Learning Predictions: Use models such as LSTM for short-term trend predictions and deploy using AWS SageMaker. Publish predictions back to a Kafka topic for real-time dashboard visualization【7:9†source】【7:16†source】.
+
+Architecture Overview
+Data Sources: Stock data is ingested from APIs like Yahoo Finance or Alpha Vantage【7:1†source】.
+Kafka as a Messaging Queue: Intermediate Kafka topics handle real-time data between producers and consumers【7:19†source】.
+Persistent Storage: Utilize AWS S3 for both raw and processed data storage【7:19†source】【7:15†source】.
+Consumer Applications: Applications consume data from Kafka for processing, alert generation, and analytics【7:13†source】【7:14†source】.
+Conclusion
+This workflow allows for efficient, scalable, and low-latency data processing suitable for real-time applications like stock market analysis. Through the use of AWS services and Apache Kafka, such systems can be built robustly and with cost efficiency in mind【7:14†source】【7:2†source】.

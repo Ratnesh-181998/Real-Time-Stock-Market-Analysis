@@ -1,0 +1,26 @@
+--- Reading Kafka___Data_Engineering.pdf ---
+Real-timedataanalyticsUsingaPractical-&AWsaccount-freetreesuxis#ECC(virtualMacha↓GrogeCorab↑S3-datestorage↓Glue+Gawlingdatafrom33↓Athena-SstepsettingupIMELfeAmazonLim2AMI->Security-AddIinboundrule⊥securitygroup↑Alltraffic-IPv4
+ curl -O https://dlcdn.apache.org/kafka/4.0.0/kafka_2.13-4.0.0.tgztar -xzf kafka_2.13-4.0.0.tgzcd kafka_2.13-4.0.0
+sudo yum install -y java-17-amazon-correttoKAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"bin/kafka-storage.sh format --standalone -t $KAFKA_CLUSTER_ID -c config/server.propertiesadvertised.listeners=PLAINTEXT://localhost:9092,CONTROLLER://localhost:9093sudo nano conﬁg/server.propertiesS-Pychanu(localmadie)-Te r m i n a lLSSHcommand.El2stepInyourvictualmachineinstall①SUM(②KakaDownloadlatestversionofKafka-ExtractKafka-InstallraTCdKafkaT↑=>->TwinFoipaddresReplace
+107.20.130.244advertised.listeners=PLAINTEXT://107.20.130.244:9092,CONTROLLER://107.20.130.244:9093
+export KAFKA_HEAP_OPTS="-Xms512M -Xmx512M"
+bin/kafka-server-start.sh config/server.properties
+bin/kafka-topics.sh --create --topic stock-market --bootstrap-server 107.20.130.244:9092bin/kafka-console-producer.sh --topic stock-market --bootstrap-server 107.20.130.244:9092bin/kafka-console-consumer.sh --topic stock-market --from-beginning --bootstrap-server 107.20.130.244:9092->Adjustthememory-StarttheKafkeserverTo p i c-stock-marketTest-Produce-ConsumerProduce-ye7&AWSS3cConsumer-TopicCreationProducernew-terminal-Consumer
+-ProducesCorah-ConsuiceColab.~YuianceProduce=am=>AthenasaLcommands--AwsAWSwarGawl-securitybedentials~AccessIDI[SecretAccesskey
+->
+
+--- End of Kafka___Data_Engineering.pdf ---
+
+--- Reading Kakfa_real_time_processing.pdf ---
+-TInstallKafkaonAnsErMLSystemKafkaDistributeitrantStreamingplatformtohigh-throughput-Real-timedatefeads-NotaSimplemessageOncuetdistributed⊥optimisedfrhoritizontalScalingtodurable-tlowlatency①PersistentStorage①Scalable-Addbrokes--⑤faultTolerant-b⑦ordinggaurente
+ZookeeperI,(metudateCoordination)-tracksstatesofbroken-partitionleadnsVKafkaCluster-id trackerProduc->->consumerBeorReaddatesendsmessagetoPart1Part1atopicstockMarket(follow)[PartitionKey(Tesral)&DMachineLeavingSystemdrignforRealtimeStockmarketAnalysFunctionalReg①Real-timedatanigestionigestprices,volume,metadatoevay-see②Streamprocuring-clearaggregatevara③Batch&realtimestorage-storpunddata
+⑦Real-timAlerts-Detectanomalyvolumespikes,pricedrope)-⑤BatchAnalytics-SQLqueriesorhistoricaldate⑥MLdictions-Predictshort-termstocktrends⑦DashboardsVisualizetrendsNort①now-latency-<5 see(Andhand]datarigest"predictions②scalability-1000+stockswithIseeupdates③faulttolerance⑦Costofficiency.[S3,E①Stocklatesource(yahoofriance,AlphaVantageAPL)Y②Kafka(EC2]------Real-timeAleving[Lambda]③Rai"DateLake[S3]
+sudo yum install javawget https://archive.apache.org/dist/kafka/3.3.1/kafka_2.12-3.3.1.tgzcd kafka_2.12-3.3.1/tar -xzf kafka_2.12-3.3.1.tgzKafka uses Zookeeper for distributed coordination. Start Zookeeper in the background:bin/zookeeper-server-start.sh conﬁg/zookeeper.propertiesexport KAFKA_HEAP_OPTS="-Xmx256M -Xms128M"Start the Kafka server:kafka-server-start.sh conﬁg/server.propertiesLoadKafkaonEC2①LauchanEC2nistance-AmazonLi2-②SoHclientdetails⑤Makeaconnectionring Kvaluepair-localterminalI-ISHCommand⊥(downloadKafica)3)Lunachieeasidethefolder56)opennewtermnialIncreasememory#FowSoFile(Csu/parquet/isou)Whaha[S3://stock-date/ra/ate=2013-10-10 (12(partitions-datehour
+-- Create a table referencing S3 dataCREATE EXTERNAL TABLE my_table (id INT,name STRING,age INT) ROW FORMAT DELIMITEDFIELDS TERMINATED BY ','STORED AS TEXTFILELOCATION 's3://my-bucket/data/';
+def lambda_handler(event, context):    for record in event['records']:        data = json.loads(record['value'])        if data['volume'] > 1000000:            sns.publish(TopicArn='arn:aws:sns:...', Message=f"Volume spike: {data['symbol']}")An④SampleJobConvertJSONtoparquet,santizedateChandlemissyvalue)featureegining(movingAug,RSI,MACPI③S3:/1sto-date/processed)date(hour-Y#11⑥SoLfranalyticsAWSAthena⑦optionalAltAnlambda-sweetwarn
+df['5min_MA'] = df['close'].rolling(window=300).mean()  # 300 seconds = 5 mins
+model = Sequential([    LSTM(128, input_shape=(60, 5),  # 60 time steps, 5 features    Dropout(0.3),    Dense(1)])model.compile(loss='mae', optimizer='adam')⑧Featurengieig-MovingAug②modellingModelPosCowsBestUsedFast,TabularManualfeatureIntradayXGBOOSTdatEngineeringpredictionsProphetHandlesseasonalityStruggleonistemtrends·leator-SoaneI↑LSTMdata,slowHighfreapatternetrangᶒMaintelevepredictionsDeploy~Sagemakerendpoint-PredictionstoKafkaKopic⊥predictionsforreal-thidashboards.
+Problem↑PredictionIsee=-LSTMcantakefine-[ProphetForalas)[KaftnaGlue-AthenaenaDeploy(SagemakeLandAlts)
+
+--- End of Kakfa_real_time_processing.pdf ---
+
